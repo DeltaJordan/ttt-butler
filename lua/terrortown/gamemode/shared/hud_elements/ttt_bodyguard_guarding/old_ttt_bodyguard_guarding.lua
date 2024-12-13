@@ -13,7 +13,7 @@ if CLIENT then -- CLIENT
 		huds.GetStored("old_ttt"):ForceElement(self.id)
 
 		-- set as NOT fallback default
-        self.disabledUnlessForced = true
+		self.disabledUnlessForced = true
 	end
 
 	function HUDELEMENT:Initialize()
