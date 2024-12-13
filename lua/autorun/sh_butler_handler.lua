@@ -126,22 +126,10 @@ if SERVER then
 		SendFullStateUpdate()
 	end)
 
-	hook.Add("PlayerDeath", "TTT2ButlerTargetDeathHandler", function(ply, infl, attacker)
-		if ply:GetSubRole() == ROLE_BUTLER or GetRoundState() ~= ROUND_ACTIVE then return end
-		local guards = BUTLER_DATA:GetGuards(ply)
-		if not BUTLER_DATA:HasGuards(ply) then return end
-		for k, v in ipairs(guards) do
-			if v == attacker then
-				v:Kill()
-				BUTLER_DATA:SetNewGuard(v, nil)
-			end
-		end
-	end)
-
 	hook.Add("PostPlayerDeath", "TTT2ButlerTargetPostDeathHandler", function(ply)
 		if ply:GetSubRole() == ROLE_BUTLER or GetRoundState() ~= ROUND_ACTIVE then return end
-		local guards = BUTLER_DATA:GetGuards(ply)
 		if not BUTLER_DATA:HasGuards(ply) then return end
+		local guards = BUTLER_DATA:GetGuards(ply)
 		for k, v in ipairs(guards) do
 			v:SetRole(ROLE_RETIRED)
 			SendFullStateUpdate()

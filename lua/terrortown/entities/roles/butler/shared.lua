@@ -8,7 +8,7 @@ end
 function ROLE:PreInitialize()
 	self.index = ROLE_BUTLER
 	self.color = Color(255, 115, 0, 255)
-	self.abbr = "butlr"
+	self.abbr = "butler"
 
 	self.preventFindCredits = true
 	self.preventKillCredits = true

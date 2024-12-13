@@ -8,7 +8,7 @@ end
 function ROLE:PreInitialize()
 	self.index = ROLE_RETIRED
 	self.color = Color(75, 75, 75, 255)
-	self.abbr = "retir"
+	self.abbr = "retired"
 
 	self.score.surviveBonusMultiplier = 0
 	self.score.aliveTeammatesBonusMultiplier = 0
