@@ -55,7 +55,35 @@ if SERVER then
 		end
 	end
 
-	-- REMOVED BUTLER_DATA:FindNewGuardingPlayer
+	function BUTLER_DATA:FindNewGuardingPlayer(ply, delay)
+		if delay then
+			timer.Simple(delay, function() BUTLER_DATA:FindNewGuardingPlayer(ply) end)
+			return
+		end
+
+		if not ply or not IsValid(ply) then return end
+		if not ply:IsTerror() or ply:IsSpec() or ply:GetSubRole() ~= ROLE_BODYGUARD then return end
+		local alivePlayers = {}
+		for k, v in ipairs(player.GetAll()) do
+			if v:IsTerror() and v:Alive() and not v:IsSpec() and v:GetSubRole() ~= ROLE_BODYGUARD and v ~= ply then table.insert(alivePlayers, v) end
+		end
+
+		local tmp = table.Copy(alivePlayers)
+		for k, v in ipairs(alivePlayers) do
+			if BUTLER_DATA:HasGuards(v) then table.RemoveByValue(tmp, v) end
+		end
+
+		local playerAvailable = #tmp > 0
+		if playerAvailable then
+			local newToGuard = table.Random(tmp)
+			BUTLER_DATA:SetNewGuard(ply, newToGuard)
+			return
+		end
+
+		local newToGuard = table.Random(alivePlayers)
+		BUTLER_DATA:SetNewGuard(ply, newToGuard)
+	end
+
 	function BUTLER_DATA:GetGuards(ply)
 		local guards = {}
 		for k, v in ipairs(player.GetAll()) do
