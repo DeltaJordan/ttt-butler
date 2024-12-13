@@ -62,10 +62,10 @@ if SERVER then
 		end
 
 		if not ply or not IsValid(ply) then return end
-		if not ply:IsTerror() or ply:IsSpec() or ply:GetSubRole() ~= ROLE_BODYGUARD then return end
+		if not ply:IsTerror() or ply:IsSpec() or ply:GetSubRole() ~= ROLE_BUTLER then return end
 		local alivePlayers = {}
 		for k, v in ipairs(player.GetAll()) do
-			if v:IsTerror() and v:Alive() and not v:IsSpec() and v:GetSubRole() ~= ROLE_BODYGUARD and v ~= ply then table.insert(alivePlayers, v) end
+			if v:IsTerror() and v:Alive() and not v:IsSpec() and v:GetSubRole() ~= ROLE_BUTLER and v ~= ply then table.insert(alivePlayers, v) end
 		end
 
 		local tmp = table.Copy(alivePlayers)
