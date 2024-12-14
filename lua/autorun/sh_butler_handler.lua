@@ -132,7 +132,7 @@ if SERVER then
 		local guards = BUTLER_DATA:GetGuards(ply)
 		for k, v in ipairs(guards) do
 			v:SetRole(ROLE_RETIRED)
-			ply:SetHealth(20)
+			v:SetHealth(20)
 			events.Trigger(EVENT_BUTLER_FAIL, v, ply)
 			SendFullStateUpdate()
 		end
